@@ -3,7 +3,7 @@ import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { SearchCategoryDto } from './dto/search-category.dto';
-import { IOutput } from 'src/_helpers/default-returns';
+import { IOutput } from 'src/_helpers/default-interfaces';
 
 @Injectable()
 export class CategoriesService {

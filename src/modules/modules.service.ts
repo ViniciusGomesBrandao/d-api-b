@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateModuleDto } from './dto/create-module.dto';
 import { UpdateModuleDto } from './dto/update-module.dto';
 import { SearchModulesDto } from './dto/search-modules.dto';
-import { IOutput } from 'src/_helpers/default-returns';
+import { IOutput } from 'src/_helpers/default-interfaces';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()

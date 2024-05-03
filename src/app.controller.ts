@@ -2,7 +2,7 @@ import { Controller, Get, Res } from '@nestjs/common';
 import { AppService } from './app.service';
 import { BigdatacorpService } from '@app/bigdatacorp';
 import { Response } from 'express';
-import { IOutput } from './_helpers/default-returns';
+import { IOutput } from './_helpers/default-interfaces';
 
 @Controller()
 export class AppController {

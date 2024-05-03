@@ -6,10 +6,14 @@ import { NestjsFormDataModule } from 'nestjs-form-data';
 import { BigdatacorpService } from '@app/bigdatacorp';
 import { MakePdfService } from 'src/_services/make-pdf/make-pdf.service';
 import { JwtService } from '@nestjs/jwt';
+import { BullModule } from '@nestjs/bull';
 
 @Module({
   imports: [
-    NestjsFormDataModule
+    NestjsFormDataModule,
+    BullModule.registerQueue({
+      name: 'reports'
+    })
   ],
   controllers: [ReportsController],
   providers: [ReportsService, PrismaService, BigdatacorpService, MakePdfService, JwtService]

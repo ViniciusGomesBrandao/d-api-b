@@ -1,28 +1,31 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsArray, IsNotEmpty, IsNumber, IsNumberString, IsOptional, IsString } from "class-validator";
+import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
 
 export class CreateCategoryDto {
     @IsNotEmpty()
     @IsString()
     @ApiProperty({
-        example: "Categoria Teste",
-        required: true
+        example: "Test Category",
+        required: true,
+        description: "The name of the category."
     })
     name: string;
 
     @IsNotEmpty()
     @IsString()
     @ApiProperty({
-        example: "Categoria destinada para teste",
-        required: true
+        example: "Category intended for testing purposes.",
+        required: true,
+        description: "The description of the category."
     })
     description: string;
 
     @IsOptional()
     @IsNumber()
     @ApiProperty({
-        example: "1.90",
-        required: true
+        example: 1.90,
+        required: true,
+        description: "A custom value associated with the category."
     })
     custom_value: number;
 
@@ -30,7 +33,7 @@ export class CreateCategoryDto {
     @ApiProperty({
         example: [1, 2],
         required: false,
-        description: "ID dos modulos a serem adicionados na categoria"
+        description: "An array containing the IDs of the modules to be added to the category."
     })
-    modules?: number[]
+    modules?: number[];
 }

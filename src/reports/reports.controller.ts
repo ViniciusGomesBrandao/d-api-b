@@ -11,7 +11,7 @@ import { GetPdfReportDto } from './dto/get-pdf-report.dto';
 @Controller('reports')
 @ApiTags('Reports')
 export class ReportsController {
-  constructor(private readonly reportsService: ReportsService) {}
+  constructor(private readonly reportsService: ReportsService) { }
 
   // Main
 
@@ -33,12 +33,19 @@ export class ReportsController {
     // console.log(pdfBuffer)
     // return pdfBuffer;
 
-    
+
     if (pdfBuffer.success) {
       // console.log(pdfBuffer)
-      res.setHeader('Content-Type', 'application/pdf');
-      res.setHeader('Content-Disposition', 'attachment; filename="relatorio.pdf"');
-      res.send(pdfBuffer.data);
+      // res.setHeader('Content-Type', 'application/pdf');
+      // res.setHeader('Content-Disposition', 'attachment; filename="relatorio.pdf"');
+      res.send({
+        success: true,
+        data: pdfBuffer.data.toString('base64')
+      });
+      // return {
+      //   success: true,
+      //   data: pdfBuffer.data
+      // }
     } else {
       console.error('Erro ao gerar o PDF:', pdfBuffer.message);
       res.status(500).send({
@@ -65,6 +72,6 @@ export class ReportsController {
 
   // PDFs
 
-  
+
 
 }

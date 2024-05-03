@@ -24,6 +24,7 @@ model CategoriesOnModules {
   id         Int        @id @default(autoincrement())
   categoryId Int
   moduleId   Int
+  order      Int?       @default(0)
   Categories Categories @relation(fields: [categoryId], references: [id])
   Modules    Modules    @relation(fields: [moduleId], references: [id])
 }
@@ -81,6 +82,47 @@ model security_code {
   users           users              @relation(fields: [id_user], references: [id])
 }
 
+model Messages {
+  id      Int      @id @default(autoincrement())
+  content String
+  files   String[] @default([])
+
+  chat   Chats @relation(fields: [chatId], references: [id])
+  chatId Int
+
+  author   users @relation(fields: [authorId], references: [id], onDelete: NoAction)
+  authorId Int
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("messages")
+}
+
+model Chats {
+  id           Int            @id @default(autoincrement())
+  created_at   DateTime       @default(now())
+  updated_at   DateTime       @updatedAt
+  status       StatusChat     @default(ACTIVE)
+  messages     Messages[]
+  participants UsersOnChats[]
+
+  @@map("chats")
+}
+
+model UsersOnChats {
+  chatId Int
+  chat   Chats @relation(fields: [chatId], references: [id], onDelete: Cascade)
+
+  userId Int
+  user   users @relation(fields: [userId], references: [id])
+
+  entry_date DateTime @default(now())
+
+  @@id([chatId, userId])
+  @@map("users_on_chats")
+}
+
 model token_managements {
   id         Int      @id @default(autoincrement())
   id_user    Int?
@@ -114,6 +156,16 @@ model user_configuration {
   users                    users    @relation(fields: [id_user], references: [id])
 }
 
+model finances {
+  id         Int      @id @default(autoincrement())
+  balance    Float    @default(0.0)
+  debit      Float    @default(0.0)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  user       users    @relation(fields: [userId], references: [id])
+  userId     Int      @unique
+}
+
 model users {
   id                 Int                 @id @default(autoincrement())
   id_user            Int?
@@ -140,6 +192,37 @@ model users {
   user_configuration user_configuration?
   users              users?              @relation("usersTousers", fields: [id_user], references: [id])
   other_users        users[]             @relation("usersTousers")
+  send_messages      Messages[]
+  chats              UsersOnChats[]
+  finance            finances[]
+  finance_history    finance_history[]
+  reports            report_history?
+}
+
+model finance_history {
+  id         Int            @id @default(autoincrement())
+  value      Float
+  action     FinanceActions
+  report     String?
+  created_at DateTime       @default(now())
+  updated_at DateTime       @updatedAt
+  user       users          @relation(fields: [userId], references: [id])
+  userId     Int
+}
+
+model report_history {
+  id         Int      @id @default(autoincrement())
+  report     String
+  value      Float
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  user       users    @relation(fields: [userId], references: [id])
+  userId     Int      @unique
+}
+
+enum FinanceActions {
+  DEPOSIT
+  REPORT
 }
 
 enum Libraries {
@@ -170,4 +253,12 @@ enum StatusSecurityCode {
 enum TypeEmailConfirm {
   UNCONFIRMED
   CONFIRMED
+}
+
+enum StatusChat {
+  ACTIVE
+  INACTIVE
+  ARCHIVED
+  BLOCKED
+  REMOVED
 }

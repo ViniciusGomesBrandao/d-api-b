@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateResourceDto } from './dto/create-resource.dto';
 import { UpdateResourceDto } from './dto/update-resource.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { IOutput } from 'src/_helpers/default-returns';
+import { IOutput } from 'src/_helpers/default-interfaces';
 
 @Injectable()
 export class ResourcesService {

@@ -6,11 +6,14 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-
+import { GetAllUsersDto } from './dto/get-all.dto';
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags('Users')
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
@@ -21,7 +24,7 @@ export class UsersController {
   }
 
   @Get()
-  findAll() {
+  findAll(@Query() getAllUsersDto: GetAllUsersDto) {
     return this.usersService.findAll();
   }
 

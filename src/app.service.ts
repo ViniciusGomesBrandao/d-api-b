@@ -1,6 +1,6 @@
 import { BigdatacorpService } from '@app/bigdatacorp';
 import { Injectable } from '@nestjs/common';
-import { IOutput } from './_helpers/default-returns';
+import { IOutput } from './_helpers/default-interfaces';
 // const puppeteer = require('puppeteer');
 import * as  puppeteer from 'puppeteer'
 @Injectable()

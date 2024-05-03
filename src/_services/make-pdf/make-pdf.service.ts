@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { IOutput } from 'src/_helpers/default-returns';
+import { IOutput } from 'src/_helpers/default-interfaces';
 import * as  puppeteer from 'puppeteer'
 @Injectable()
 export class MakePdfService {
@@ -661,7 +661,7 @@ export class MakePdfService {
 
       let lawsuit: string = "";
       if (judicialData.hasOwnProperty('Lawsuits')) {
-        console.log(judicialData)
+        // console.log(judicialData)
         await Promise.all(judicialData.Lawsuits.map((process: any) => {
           lawsuit = `${lawsuit}
           <div class="row w-100 m-0 mt-3">

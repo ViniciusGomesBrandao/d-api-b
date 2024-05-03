@@ -10,9 +10,28 @@ import { CategoriesModule } from './categories/categories.module';
 import { MakePdfService } from './_services/make-pdf/make-pdf.service';
 import { ReportsModule } from './reports/reports.module';
 import { AuthModule } from './auth/auth.module';
+import { ChatModule } from './chat/chat.module';
+import { FinanceModule } from './finance/finance.module';
+import { BullModule } from '@nestjs/bull';
 
 @Module({
-  imports: [UsersModule, BigDataModule, ResourcesModule, ModulesModule, CategoriesModule, ReportsModule, AuthModule],
+  imports: [
+    UsersModule, 
+    BigDataModule, 
+    ResourcesModule, 
+    ModulesModule, 
+    CategoriesModule, 
+    ReportsModule, 
+    AuthModule, 
+    ChatModule, 
+    FinanceModule,
+    BullModule.forRoot({
+      redis: {
+        host: 'localhost',
+        port: 6379
+      }
+    })
+  ],
   controllers: [AppController],
   providers: [AppService, BigdatacorpService, MakePdfService],
 })

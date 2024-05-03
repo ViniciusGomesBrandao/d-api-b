@@ -2886,7 +2886,6 @@ export class BigdatacorpService {
 
   makeDefaultParams(params: any) {
     let query = `${params.doc ? `doc{${params.doc}},` : ''}${params.name ? `name{${params.name}},` : ''}${params.phone ? `phone{${params.phone}},` : ''}${params.email ? `email{${params.email}},` : ''}${params.classnumber ? `classnumber{${params.classnumber}},` : ''}${params.domain ? `domain{${params.domain}},` : ''}${params.zipcode ? `zipcode{${params.zipcode}},` : ''}${params.classorganization ? `classorganization{${params.classorganization}},` : ''}${params.nit ? `nit{${params.nit}},` : ''}${params.profession ? `profession{${params.profession}},` : ''}${params.cnae ? `cnae{${params.cnae}},` : ''}${params.addressmain ? `addressmain{${params.addressmain}},` : ''}${params.doornumber ? `doornumber{${params.doornumber}},` : ''}${params.neighborhood ? `neighborhood{${params.neighborhood}},` : ''}${params.city ? `city{${params.city}},` : ''}${params.state ? `state{${params.state}},` : ''}${params.latitude ? `latitude{${params.latitude}},` : ''}${params.longitude ? `longitude{${params.longitude}},` : ''}${params.mothername ? `mothername{${params.mothername}},` : ''}${params.docnumbermask ? `docnumbermask{${params.docnumbermask}},` : ''}${params.birthdate ? `birthdate{${params.birthdate}},` : ''}${params.dateformat ? `dateformat{${params.dateformat}},` : ''}`;
-    console.log(query);
     return query;
   }
 

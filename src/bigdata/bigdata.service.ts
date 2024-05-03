@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { GetRegistrationDto } from './dto/get-registration.dto';
 import { BigdatacorpService } from '@app/bigdatacorp';
-import { IOutput } from 'src/_helpers/default-returns';
+import { IOutput } from 'src/_helpers/default-interfaces';
 
 
 
