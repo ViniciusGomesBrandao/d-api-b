@@ -11,8 +11,8 @@ interface IOutput {
 export class BigdatacorpService {
   // private _host: string = `${process.env._BIGDATACORP_ENVIRONMENT_URL}`;
   private _host: string = `https://plataforma.bigdatacorp.com.br`;
-  private _username: string = `duguard`;
-  private _password: string = `2!f(nmVQA(#H9rw4`;
+  private _username: string = ``;
+  private _password: string = ``;
   private _expiration_minute: number = 24; //24H
   private _tz: string = 'America/Sao_Paulo';
   private _origin: string = 'bigdatacorp';
